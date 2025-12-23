@@ -21,6 +21,5 @@ This repository is not meant to claim expertise.
 It serves as a learning log and portfolio showing growth, practice, and problem-solving over time.
 
 ## Status
-ongoing
-Ongoing 🚀
+Ongoing 
 
