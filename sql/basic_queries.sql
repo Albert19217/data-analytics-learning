@@ -1,5 +1,4 @@
-## Basic SELECT Queries
-
+##Step 1: Basics SELECT Queries 
 ```sql
 SELECT
       *
@@ -9,7 +8,6 @@ LIMIT 100;
 
 
 ### Selecting Specific Columns
-
 ```sql
 SELECT
     `Release Date` AS Release_Date,
@@ -21,7 +19,6 @@ FROM
 
 
 ### Filtering Data
-
 ```sql
 SELECT 
      *
@@ -32,11 +29,59 @@ WHERE
 
 
 ### Sorting Result
-
 ```sql
 SELECT
       *
 FROM
     `calm-segment-475021-s1.movie_data.movie`
 ORDER BY
-       Revenue DESC
+       Revenue DESC;
+
+
+## Step 2: Aggregation & Grouping Queries
+     
+     ### Counting Total Movies
+```sql
+SELECT
+     COUNT(*) AS total_movies
+FROM
+    `calm-segment-475021-s1.movie_data.movie`;
+
+
+### Total Revenue Per Genre
+```sql
+SELECT
+    Genre,
+    SUM(Revenue) AS total_revenue
+FROM
+    `calm-segment-475021-s1.movie_data.movie`
+GROUP BY
+    Genre
+ORDER BY
+    total_revenue DESC;
+
+
+### Average Revenue by Genre
+```sql
+SELECT
+    Genre,
+    AVG(Revenue) AS avg_revenue
+FROM
+    `calm-segment-475021-s1.movie_data.movie`
+GROUP BY
+    Genre
+ORDER BY
+    avg_revenue DESC;
+
+
+### Movies Count per Genre
+```sql
+SELECT
+    Genre,
+    COUNT(*) AS movie_count
+FROM
+    `calm-segment-475021-s1.movie_data.movie`
+GROUP BY
+    Genre
+ORDER BY
+    movie_count DESC;
