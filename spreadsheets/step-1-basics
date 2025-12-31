@@ -1,0 +1,37 @@
+# Step 1 – Basics of Spreadsheets
+
+**Date Started:** 2025-12-31  
+**Date Completed:** YYYY-MM-DD
+
+## Key Concepts Learned
+- Navigating cells, rows, and columns
+- Entering and formatting data (bold, italics, colors, borders)
+- Copy, cut, paste, and fill handle
+- Sorting and filtering simple datasets
+- Basic understanding of spreadsheet structure (worksheets, tabs)
+
+## Example Exercises
+1. **Exercise 1 – Formatting a Table**
+   - Dataset: Sample sales data
+   - Task: Apply bold headers, adjust column widths, and color rows
+   - Outcome: Practiced formatting for readability
+
+2. **Exercise 2 – Sorting & Filtering**
+   - Dataset: Movie dataset (release date, genre, revenue)
+   - Task: Sort movies by revenue, filter only “Action” genre
+   - Outcome: Learned to quickly extract meaningful subsets
+
+3. **Exercise 3 – Simple Calculations**
+   - Dataset: Budget vs. Expenses
+   - Task: Calculate total, average, minimum, and maximum using SUM, AVERAGE, MIN, MAX
+   - Outcome: Practiced basic formulas
+
+## Challenges
+- Remembering exact formula syntax
+- Applying formatting consistently
+- Filtering multiple conditions (AND/OR)
+
+## Key Takeaways
+- Formatting makes data readable and easier to analyze
+- Sorting and filtering help explore datasets efficiently
+- Basic formulas are essential building blocks for more advanced analysis
