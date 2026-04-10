@@ -1,0 +1,92 @@
+---
+title: "Mini Weather Data Analysis"
+author: "Samson Ogedengbe"
+date: "2026-04-10"
+output: html_document
+---
+
+## Setting up my environment
+Notes: setting up my R environment by loading ggplot2
+
+```{r loading_packages}
+
+library(ggplot2)
+
+```
+
+# Introduction
+
+This project analyzes weekly weather data using R
+
+### Load Data
+
+```{r}
+days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" , "Sunday")
+temperature <- c(28, 30, 29, 31, 27, 26, 32)
+rainfall <- c(5, 0, 10, 0, 2, 8, 0)
+
+weather <- data.frame(
+  days = days,
+  temperature = temperature,
+  rainfall = rainfall
+)
+
+print(weather)
+
+```
+
+### Summary Statistics
+
+```{r}
+avg_temp <- mean(temperature)
+cat("Average temperature:", avg_temp, "°C\n")
+
+highest_temp <- max(temperature)
+cat("Highest temperature:", highest_temp, "°C\n")
+
+lowest_temp <- min(temperature)
+cat("Lowest temperature:", lowest_temp, "°C\n")
+
+total_rainfall <- sum(rainfall)
+cat("Total rainfall:", total_rainfall, "mm\n")
+
+```
+
+### Rain Analysis
+
+```{r}
+rainy_day <- sum(rainfall > 0)
+cat("Rainy days:", rainy_day, "\n")
+
+dry_day <- sum(rainfall == 0)
+cat("Dry days:", dry_day, "\n")
+
+```
+
+### Weather category
+
+```{r}
+weather$weather_category <- ifelse(weather$temperature > 30, "Hot",
+                           ifelse(weather$temperature >= 25 & weather$temperature <= 30, "Warm", 
+                                  "Cool"))
+print(weather)
+
+```
+
+### Add Visualization
+
+```{r temperature_visualization}
+ggplot(data = weather, aes(x = days, y = temperature, fill = weather_category)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Weekly Temperature Report",
+       x = "Day",
+       y = "Temperature (°C)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+The highest temperature recorded was 32°C on Sunday, indicating a very hot end to the week.
+
+
+
