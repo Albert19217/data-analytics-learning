@@ -1,116 +1,124 @@
----
+# Nigeria Weather Analysis Dashboard
 
-# Employee Data Analysis in R
+> Which Nigerian city has the most extreme weather? This project explores temperature 
+> patterns and rainfall distribution across major Nigerian cities using R.
+
+![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
+![tidyverse](https://img.shields.io/badge/tidyverse-1A162D?style=flat&logo=r&logoColor=white)
+![ggplot2](https://img.shields.io/badge/ggplot2-FC5200?style=flat)
+
+---
 
 ## Project Overview
 
-This project explores employee productivity, salary distribution, and project workload using **R** and **ggplot2**.
-The goal of the analysis is to understand patterns in employee performance across departments through **data transformation, summary statistics, and visualization**.
+This project demonstrates a complete data analysis workflow including data cleaning,
+transformation, aggregation, visualization, and insight generation — built entirely
+using the tidyverse ecosystem in R.
 
-The analysis was performed using **R Markdown**, allowing the results, code, and explanations to be presented in a reproducible report.
-
----
-
-# Tools and Technologies
-
-* **R**
-* **RStudio**
-* **tidyverse**
-* **ggplot2**
-* **R Markdown**
-
-# Skills Practiced in This Project
-
-This project is part of my learning journey in **R programming and data analysis**.
-
-### Data Handling
-
-* Creating datasets using **vectors and data frames**
-* Organizing structured data in R
-* Converting variables into **factors**
-
-### Data Manipulation (tidyverse)
-
-* Using **`mutate()`** to create new variables
-* Transforming datasets
-* Calculating productivity and salary metrics
-
-### Data Aggregation
-
-* Using **`group_by()`** and **`summarise()`** to calculate:
-
-  * Average salary
-  * Maximum and minimum salary
-  * Total projects completed
-  * Employee count by department
-  * Average productivity
-
-### Data Visualization (ggplot2)
-
-Created several visualizations including:
-
-* Bar charts
-* Column charts
-* Scatter plots
-* Box plots
-
-These visualizations help reveal patterns in **salary, experience, and workload**.
-
-### Data Analysis Workflow
-
-* Performing **exploratory data analysis**
-* Identifying relationships between variables
-* Interpreting visual insights
-
-### Reproducible Reporting
-
-* Writing reports using **R Markdown**
-* Generating an **HTML report** that combines code, results, and explanations
+> **Note:** The dataset was manually simulated for demonstration purposes using
+> realistic Nigerian climate ranges.
 
 ---
 
-# Key Insights
+## Dataset Description
 
-* The **IT department** tends to have higher average salaries compared to other departments.
-* There is a **positive relationship between experience and salary**.
-* Productivity levels vary across employees and departments.
-* Some employees handle **more projects with fewer working hours**, suggesting higher efficiency.
+The dataset covers weather conditions across four Nigerian cities — **Lagos**, **Abuja**,
+**Port Harcourt**, and **Kano** — each with daily temperature values, rainfall
+measurements, and a 5-day observation period.
 
 ---
 
-#  How to Run This Project
+## Key Insights
 
-1. Open the `.Rmd` file in **RStudio**
-2. Install required packages if needed:
+| City | Finding |
+|------|---------|
+| Kano | Recorded the highest overall temperatures |
+| Port Harcourt | Experienced the highest rainfall levels |
+| Abuja | Showed consistently lower rainfall patterns |
+| Lagos | Maintained stable and moderate temperature trends |
+
+---
+
+## Skills Demonstrated
+
+### Data Manipulation — `dplyr`
+- `filter()` — subset data by condition
+- `select()` — choose relevant variables
+- `mutate()` — create new features
+- `arrange()` — sort observations
+- `group_by()` + `summarise()` — aggregate insights
+- `left_join()` — combine datasets
+
+### Data Reshaping — `tidyr`
+- `pivot_longer()` — transformed data from wide to long format
+
+### Data Visualization — `ggplot2`
+- Bar charts for city comparisons
+- Line charts for temperature trends across days
+- Faceted plots for grouped analysis
+- Data labels and custom themes for clarity
+
+### Advanced R Concepts
+- `case_when()` for conditional classification
+- Pipe operator `%>%` for workflow structuring
+- Grouped statistical summaries
+
+---
+
+## Visualizations Included
+
+- Average temperature comparison by city
+- Temperature trends across days
+- Total rainfall distribution
+
+> All charts were built with `ggplot2`. See the `/outputs/` folder for exported plots.
+
+---
+
+## How to Run
 
 ```r
-install.packages("tidyverse")
-install.packages("ggplot2")
+# 1. Clone this repository
+git clone https://github.com/Albert19217/nigeria-weather-analysis.git
+
+# 2. Open the project in RStudio
+
+# 3. Install required packages
+install.packages(c("tidyverse"))
+
+# 4. Run the analysis
+source("nigeria_weather_analysis.R")
+
+# Or knit the R Markdown report
+rmarkdown::render("nigeria_weather_report.Rmd")
 ```
 
-3. Click **Knit** to generate the report.
+---
+
+## Tools & Technologies
+
+- R
+- dplyr, tidyr, ggplot2
+- R Markdown
 
 ---
 
-# Learning Goal
+## Future Improvements
 
-This project is part of my ongoing effort to improve my skills in:
-
-* **R Programming**
-* **Data Analysis**
-* **Data Visualization**
-* **Reproducible Research**
+- Use real-world meteorological datasets from NIMET or open climate APIs
+- Build an interactive dashboard using Shiny
+- Integrate SQL for data extraction and querying
+- Automate reporting with parameterized R Markdown
 
 ---
 
-# Author
+## Author
 
-**Samson O.**
+**Samson O.** — Aspiring Data Analyst Spreadsheets | SQL | R | Python
 
----
-
-This project documents my **practice and progress in learning R for data analysis**.
+- GitHub: [github.com/YOUR-USERNAME](https://github.com/Albert19217)
 
 ---
 
-
+> This project is part of my continuous learning journey in data analytics using R.
+> Feedback and contributions are welcome!
