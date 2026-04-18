@@ -66,7 +66,7 @@ measurements, and a 5-day observation period.
 ---
 
 ## Visualizations Included
-![Temperature Analysis](temperature trend by cities.png)
+![Temperature Analysis](temperature-trend-by-cities.png)
 
 - Average temperature comparison by city
 - Temperature trends across days
