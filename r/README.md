@@ -117,7 +117,7 @@ rmarkdown::render("nigeria_weather_report.Rmd")
 
 **Samson O.** — Aspiring Data Analyst Spreadsheets | SQL | R | Python
 
-- GitHub: [github.com/YOUR-USERNAME](https://github.com/Albert19217)
+- GitHub: [github.com/Albert19217](https://github.com/Albert19217)
 
 ---
 
