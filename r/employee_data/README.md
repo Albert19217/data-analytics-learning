@@ -60,6 +60,7 @@ a clean HTML report combining code, output, and narrative.
 ### Sample Visualization
 
 ![Salary vs Experience](../images/salary-vs-experience.png)
+
 *Scatter plot showing the relationship between years of experience and monthly salary across departments*
 
 ---
