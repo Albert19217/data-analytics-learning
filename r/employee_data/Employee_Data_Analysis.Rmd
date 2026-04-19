@@ -1,0 +1,248 @@
+---
+title: "Employee Data Analysis"
+author: "Samson. O"
+date: "2026-04-13"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Project Overview
+
+This project analyzes employee productivity, salary distribution, and project workload using **R** and **ggplot2**.  
+The analysis includes data transformation, summary statistics, and visualization to uncover patterns in employee performance across departments.
+
+## Environment Setup
+
+This analysis uses the following R packages:
+
+- **dplyr** for data manipulation
+- **tidyr** for data reshaping
+- **ggplot2** for data visualization
+- **knitr** for table formatting
+- **ggrepel** for text labels readability 
+  
+```{r loading_packages, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(knitr)
+library(ggrepel)   
+```
+
+### Creating dataset
+
+```{r creating data_frame, message=FALSE, warning=FALSE}
+employee_data <- data.frame(
+  employee = c("John", "Mary", "David", "Sarah", "Daniel", 
+               "Grace", "Michael", "Linda", "James", "Sophia"),
+  department = c("IT", "HR", "IT", "Finance", "IT", 
+                 "HR", "Finance", "IT", "HR", "Finance"),
+  experience = c(3, 5, 2, 6, 4, 
+                 7, 3, 5, 4, 6),
+  salary = c(4500, 5200, 4000, 6000, 4800, 
+             6500, 4700, 5300, 5000, 6200),
+  project = c(5, 6, 3, 7, 4, 
+              8, 5, 6, 5, 7),
+  hoursworked = c(160, 170, 150, 180, 165, 
+                  175, 160, 172, 168, 178)
+    )
+
+kable(head(employee_data, 10), 
+      caption = "Sample of Employee Data",
+      col.names = c("Employee", "Department", "Experience", "Salary", "Project", "HoursWorked"))
+```
+
+### Transformation of Data
+
+```{r transformation_of_data}
+employee_data_clean <- employee_data %>%
+  mutate(salary_per_project = salary / project,
+         productivity = project / hoursworked,
+         performance = ifelse(project >= 7, "Excellent",
+                              ifelse(project >= 5 & project <= 6, "Good",
+                                     "Average")))
+
+
+kable(employee_data_clean %>%
+        select(employee, department, salary_per_project, productivity, performance),
+      caption = "Transformed Employee Data",
+      col.names = c("Employee", "Department", "Salary/Project", "Productivity", "Performance"))
+```
+
+### Summary Analysis
+
+The following analysis calculates department-level statistics including average salary, maximum salary, employee count, and productivity.
+
+```{r data_analysis}
+summary <- employee_data_clean %>%
+  group_by(department) %>%
+  summarise(
+    avg_salary = mean(salary),
+    max_salary = max(salary),
+    min_salary = min(salary),
+    total_project = sum(project),
+    employeecount = n(),
+    avg_productivity = mean(productivity)
+  )
+
+kable(summary, 
+      caption = "Department Summary Statistics",
+      col.names = c("Department", "Avg Salary", "Max Salary", 
+                    "Min Salary", "Total Projects", "Headcount", "Avg Productivity"),
+      digits = 4)
+
+```
+
+
+## Visualisation
+
+### Average Salary by Department
+
+```{r salary_bar_chart}
+ggplot(data = summary, aes(x = reorder(department, avg_salary),
+                             y = avg_salary, fill = department)) +
+   geom_col(show.legend = FALSE) +
+    geom_text(aes(label = round(avg_salary, 1)), vjust = -0.5, size = 4) +
+    scale_fill_brewer(palette = "Set2") +
+    labs(
+      title = "Average Salary By Department",
+      x = "Department",
+      y = "Salary"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold", size = 14)
+    )
+```
+
+
+### Project Per Employee
+
+```{r project_bar_chart}
+ ggplot(data = employee_data_clean, aes(x = reorder(employee, project), 
+                                          y = project)) +
+     geom_col(fill = "steelblue") +
+     geom_text(aes(label = project), vjust = -0.5) +
+     labs(
+       title = "Number of Project Per Employee",
+       x = "Employee",
+       y = "Project"
+     ) +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+   
+```
+
+
+### Salary vs Experience
+
+```{r salary_vs_experience}
+  ggplot(data = employee_data_clean,
+          mapping = aes(x = experience,
+                        y = salary, color = department)) +
+     geom_point(size = 3) +
+     geom_text_repel(aes(label = employee)) +
+     scale_color_brewer(palette = "Set2") +
+     labs(
+       title = "Salary vs Experience",
+       x = "Years of Experience",
+       y = "Monthly Salary"
+     ) +
+     theme_minimal(base_size = 12)
+```
+
+### Project vs WorkHours
+
+```{r project_vs_workhours}
+ ggplot(data = employee_data_clean, mapping = aes(x = hoursworked, y = project, color = department)) +
+     geom_point(size = 3) +
+     geom_text_repel(aes(label = employee)) +
+     scale_color_brewer(palette = "Set2") +
+     labs(
+       title = "Project vs Hours Worked",
+       x = "Number of Hours Worked",
+       y = "Project"
+     ) +
+     theme_minimal(base_size = 12)
+```
+
+
+### Salary Distribution
+
+```{r salary_distribution_across_department}
+ ggplot(data = employee_data_clean, aes(x = department,
+                                    y = salary, fill = department)) +
+     geom_boxplot(show.legend = FALSE) +
+     labs(
+       title = "Salary Distribution by Department",
+       x = "Department",
+       y = "Salary"
+     ) +
+     theme_minimal(base_size = 12)
+```
+
+### Employee Performance Distribution
+
+```{r employee_performance}
+ggplot(employee_data_clean, aes(x = performance, fill = performance)) +
+     geom_bar(show.legend = FALSE) +
+     geom_text(stat = "count", aes(label =  after_stat(count)), vjust = -0.5) +
+     scale_fill_brewer(palette = "Set2") +
+     labs(
+       title = "Employee Performance Distribution", 
+       x = "Rating", 
+       y = "Count") +
+     theme_minimal(base_size = 12)
+```
+
+
+
+## Summary & Recommendations
+
+### Key Findings
+
+**1. Experience drives salary (+47% gap)**  
+Employees with 6–7 years of experience earn an average of $6,233 compared to $4,250 
+for those with 2–3 years. Retaining experienced employees yields a significant return.
+
+**2. Finance leads in compensation (22% above IT)**  
+Finance averages $6,133 per employee vs IT at $5,025, despite similar project workloads. 
+This pay gap may create an IT retention risk over time.
+
+**3. Significant productivity efficiency gap (3× difference)**  
+Grace completes 8 projects in 175 hours; David completes 3 in 150 hours. 
+High-efficiency employees are not compensated proportionally to their output.
+
+**4. Performance is individual, not departmental**  
+40% of employees are rated Excellent, 40% Good, and 20% Average. 
+No single department dominates performance ratings.
+
+---
+
+### Recommendations
+
+| Priority | Action | Rationale |
+|----------|--------|-----------|
+| High | Conduct IT salary audit | IT workload matches Finance but salary lags 22% behind |
+| High | Introduce performance-based bonuses | Top performers like Grace and Sarah are undercompensated relative to output |
+| Medium | Launch peer knowledge-sharing programme | Pair Average-rated employees with Excellent-rated peers to raise team efficiency |
+| Medium | Replace simulated data with real HR records | Enables scalable, automated reporting via SQL + R Markdown |
+
+---
+
+### Limitations
+
+> This analysis is based on a 10-person simulated dataset. Findings are directional only 
+> and should be validated against a larger real-world HR dataset before informing 
+> policy decisions. Salary figures are assumed to be monthly USD values.
+
+
+
+
+
+
+

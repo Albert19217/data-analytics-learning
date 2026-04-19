@@ -1,124 +1,84 @@
-# Nigeria Weather Analysis Dashboard
-
-> Which Nigerian city has the most extreme weather? This project explores temperature 
-> patterns and rainfall distribution across major Nigerian cities using R.
-
-![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
-![tidyverse](https://img.shields.io/badge/tidyverse-1A162D?style=flat&logo=r&logoColor=white)
-![ggplot2](https://img.shields.io/badge/ggplot2-FC5200?style=flat)
-
----
+# Employee Data Analysis in R
 
 ## Project Overview
 
-This project demonstrates a complete data analysis workflow including data cleaning,
-transformation, aggregation, visualization, and insight generation — built entirely
-using the tidyverse ecosystem in R.
-
-> **Note:** The dataset was manually simulated for demonstration purposes using
-> realistic Nigerian climate ranges.
-
----
-
-## Dataset Description
-
-The dataset covers weather conditions across four Nigerian cities — **Lagos**, **Abuja**,
-**Port Harcourt**, and **Kano** — each with daily temperature values, rainfall
-measurements, and a 5-day observation period.
-
----
-
-## Key Insights
-
-| City | Finding |
-|------|---------|
-| Kano | Recorded the highest overall temperatures |
-| Port Harcourt | Experienced the highest rainfall levels |
-| Abuja | Showed consistently lower rainfall patterns |
-| Lagos | Maintained stable and moderate temperature trends |
-
----
-
-## Skills Demonstrated
-
-### Data Manipulation — `dplyr`
-- `filter()` — subset data by condition
-- `select()` — choose relevant variables
-- `mutate()` — create new features
-- `arrange()` — sort observations
-- `group_by()` + `summarise()` — aggregate insights
-- `left_join()` — combine datasets
-
-### Data Reshaping — `tidyr`
-- `pivot_longer()` — transformed data from wide to long format
-
-### Data Visualization — `ggplot2`
-- Bar charts for city comparisons
-- Line charts for temperature trends across days
-- Faceted plots for grouped analysis
-- Data labels and custom themes for clarity
-
-### Advanced R Concepts
-- `case_when()` for conditional classification
-- Pipe operator `%>%` for workflow structuring
-- Grouped statistical summaries
-
----
-
-## Visualizations Included
-
-- Average temperature comparison by city
-- Temperature trends across days
-- Total rainfall distribution
-
-> All charts were built with `ggplot2`. See the `/outputs/` folder for exported plots.
-
----
-
-## How to Run
-
-```r
-# 1. Clone this repository
-git clone https://github.com/Albert19217/nigeria-weather-analysis.git
-
-# 2. Open the project in RStudio
-
-# 3. Install required packages
-install.packages(c("tidyverse"))
-
-# 4. Run the analysis
-source("nigeria_weather_analysis.R")
-
-# Or knit the R Markdown report
-rmarkdown::render("nigeria_weather_report.Rmd")
-```
+This project analyzes employee productivity, salary distribution, and project 
+workload across three departments - IT, HR, and Finance - using R and ggplot2.  
+The analysis uncovers patterns in compensation, efficiency, and performance 
+through data transformation, aggregation, and visualization, presented as a 
+fully reproducible R Markdown report.
 
 ---
 
 ## Tools & Technologies
 
-- R
-- dplyr, tidyr, ggplot2
-- R Markdown
+| Tool | Purpose |
+|------|---------|
+| R + RStudio | Core analysis environment |
+| dplyr | Data manipulation and aggregation |
+| ggplot2 | Data visualization |
+| ggrepel | Non-overlapping scatter plot labels |
+| knitr | Table formatting in R Markdown |
+| R Markdown | Reproducible HTML report |
 
 ---
 
-## Future Improvements
+## Skills Demonstrated
 
-- Use real-world meteorological datasets from NIMET or open climate APIs
-- Build an interactive dashboard using Shiny
-- Integrate SQL for data extraction and querying
-- Automate reporting with parameterized R Markdown
+**Data manipulation** — `mutate()` to engineer new features (salary per project, 
+productivity rate, performance rating), `group_by()` + `summarise()` for 
+department-level aggregations, `reorder()` for sorted visualizations.
+
+**Feature engineering** — Created three derived variables: `salary_per_project`, 
+`productivity` (projects per hour), and `performance` classification 
+(Excellent / Good / Average) using nested `ifelse()`.
+
+**Data visualization** — Built 6 charts using ggplot2:
+- Average salary by department (bar chart)
+- Projects per employee (bar chart)
+- Salary vs experience by department (scatter + `geom_text_repel`)
+- Projects vs hours worked (scatter + `geom_text_repel`)
+- Salary distribution by department (box plot)
+- Employee performance distribution (bar chart)
+
+**Reproducible reporting** — Full analysis written in R Markdown, knitting to 
+a clean HTML report combining code, output, and narrative.
+
+---
+
+## Key Insights
+
+- **Finance leads in compensation** — avg. $6,133/month, 22% above IT ($5,025)
+- **Experience strongly predicts salary** — 6–7 year employees earn 47% more 
+  than 2–3 year employees ($6,233 vs $4,250)
+- **3× productivity gap exists** — Grace completes 8 projects in 175hrs; 
+  David completes 3 in 150hrs, yet compensation doesn't reflect this difference
+- **Performance is individual, not departmental** — Excellent, Good, and Average 
+  ratings are distributed across all three departments
+
+---
+
+## How to Run
+
+1. Clone this repository and open `employee_analysis.Rmd` in RStudio
+2. Install required packages:
+
+```r
+install.packages(c("tidyverse", "ggrepel", "knitr"))
+```
+
+3. Click **Knit** to generate the HTML report
+
+---
+
+## Limitations
+
+This analysis uses a 10-person simulated dataset. Insights are directional 
+and should be validated against real-world HR data before informing decisions.
 
 ---
 
 ## Author
 
-**Samson O.** — Aspiring Data Analyst Spreadsheets | SQL | R | Python
+**Samson O.** — Aspiring Data Analyst | Spreadsheets | SQL | R | Python
 
-- GitHub: [github.com/YOUR-USERNAME](https://github.com/Albert19217)
-
----
-
-> This project is part of my continuous learning journey in data analytics using R.
-> Feedback and contributions are welcome!
