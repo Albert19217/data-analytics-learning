@@ -57,7 +57,12 @@ a clean HTML report combining code, output, and narrative.
   ratings are distributed across all three departments
 
 ---
+### Sample Visualization
 
+![Salary vs Experience](../images/salary-vs-experience.png)
+*Scatter plot showing the relationship between years of experience and monthly salary across departments*
+
+---
 ## How to Run
 
 1. Clone this repository and open `employee_analysis.Rmd` in RStudio
